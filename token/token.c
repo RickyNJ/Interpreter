@@ -1,25 +1,26 @@
-// token.c
+#include "../include/token.h"
 
-const char ILLEGAL[] = "ILLEGAL";
-const char END_OF_FILE[] = "EOF";
+
+const TokenType ILLEGAL = "ILLEGAL";
+const TokenType END_OF_FILE = "EOF";
 
 // identifiers + literals
-const char IDENT[] = "IDENT";
-const char INT[] = "INT";
+const TokenType IDENT = "IDENT";
+const TokenType INT = "INT";
 
 // operators
-const char ASSIGN[] = "=";
-const char PLUS[] = "+";
+const TokenType ASSIGN = "=";
+const TokenType PLUS = "+";
 
 // delimiters
-const char COMMA[] = ",";
-const char SEMICOLON[] = ";";
+const TokenType COMMA = ",";
+const TokenType SEMICOLON = ";";
 
-const char LPAREN[] = "(";
-const char RPAREN[] = ")";
-const char LBRACE[] = "{";
-const char RBRACE[] = "}";
+const TokenType LPAREN = "(";
+const TokenType RPAREN = ")";
+const TokenType LBRACE = "{";
+const TokenType RBRACE = "}";
 
 // keywords
-const char FUNCTION[] = "FUNCTION";
-const char LET[] = "LET";
+const TokenType FUNCTION = "FUNCTION";
+const TokenType LET = "LET";
