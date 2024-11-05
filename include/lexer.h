@@ -26,5 +26,13 @@ Token* NextToken(Lexer* l);
 // create a new token
 Token* newToken(TokenType tokenType, char* ch);
 
+// read the next identifier to tokenize
+char* readIdentifier(Lexer* l);
+
+// checks if char is a letter
+int isLetter(char ch);
+
+// return a new array 
+char* sliceInput(const char* input, int start, int end);
 
 #endif // LEXER_H

@@ -35,6 +35,39 @@ void readchar(Lexer* l) {
     l->readPosition++;
 }
 
+char* sliceInput(const char* input, int start, int end) {
+    if (start < 0 || end < 0 || start >= end || start >= strlen(input)){
+        return NULL;
+    }
+
+    int length = end - start;
+    char* res = malloc((length + 1) * sizeof(char));
+
+    if (res == NULL) {
+        return NULL;
+    }
+
+
+    return res;
+}
+
+char* readIdentifier(Lexer *l) {
+    int position = l->position;
+
+    while (isLetter(l->ch)) {
+        readchar(l);
+    }
+    for (int i = 0; i > (l->position - position); i++) {
+
+    }
+    return sliceInput(l->input, position, l->position);
+}
+
+int isLetter(char ch) {
+    return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+}
+
+
 Token* NextToken(Lexer* l) {
     Token* t;
     switch (l->ch) {
@@ -66,6 +99,9 @@ Token* NextToken(Lexer* l) {
             t = newToken(END_OF_FILE, &l->ch);
             break;
         default:
+            if (isLetter(l->ch)){
+                t->Literal = readIdentifier(l);
+            }
             t = newToken(ILLEGAL, &l->ch);
             break;
     }
