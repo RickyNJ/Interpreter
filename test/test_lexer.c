@@ -1,7 +1,36 @@
 #include <stdio.h>
-#include <string.h>
 #include "../include/token.h"
 #include "../include/lexer.h"
+
+typedef struct {
+    char* input;
+    Token* want;
+    size_t token_count;
+} Test;
+
+// Test* getTests() {
+//     Test tests[] = {{
+//         .input = "=+(){},;", 
+//         .want = {
+//             {.Type = ASSIGN, .Literal = "="},
+//             {.Type = PLUS, .Literal = "+"},
+//             {.Type = LPAREN, .Literal = "("},
+//             {.Type = RPAREN, .Literal = ")"},
+//             {.Type = LBRACE, .Literal = "{"},
+//             {.Type = RBRACE, .Literal = "}"},
+//             {.Type = COMMA, .Literal = ","},
+//             {.Type = SEMICOLON, .Literal = ";"},
+//             {.Type = END_OF_FILE, .Literal = ""}
+//         },
+//         .token_count = 9
+//         }, {
+//         .input = "",
+//         .want = {},
+//         .token_count = 31}
+//     };
+//
+//     return tests;
+// }
 
 int main() {
     char* input = "=+(){},;";
@@ -13,12 +42,13 @@ int main() {
         {.Type = LBRACE, .Literal = "{"},
         {.Type = RBRACE, .Literal = "}"},
         {.Type = COMMA, .Literal = ","},
-        {.Type = SEMICOLON, .Literal = ";"}
+        {.Type = SEMICOLON, .Literal = ";"},
+        {.Type = END_OF_FILE, .Literal = ""}
     };
 
     Lexer* l = New(input);
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 9; i++) {
         Token* t = NextToken(l);
 
         if (t->Type != want[i].Type) {

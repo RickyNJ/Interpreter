@@ -24,3 +24,7 @@ const TokenType RBRACE = "}";
 // keywords
 const TokenType FUNCTION = "FUNCTION";
 const TokenType LET = "LET";
+
+struct Keywords {
+
+};

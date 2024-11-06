@@ -15,6 +15,7 @@ typedef struct {
 
 
 // Function prototypes
+// Initialieze a lexer
 Lexer* New(const char* input);
 
 // read current character and move pointer to next
@@ -34,5 +35,6 @@ int isLetter(char ch);
 
 // return a new array 
 char* sliceInput(const char* input, int start, int end);
+
 
 #endif // LEXER_H
