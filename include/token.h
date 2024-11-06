@@ -12,6 +12,12 @@ typedef struct {
     const char* Literal;
 } Token;
 
+typedef struct {
+    char* Key;
+    TokenType Type;
+} Keyword;
+
+
 // TypenType values (external linkage for use in other files)
 extern const TokenType ILLEGAL;
 extern const TokenType END_OF_FILE;
@@ -33,6 +39,7 @@ extern const TokenType LPAREN;
 extern const TokenType RPAREN;
 extern const TokenType LBRACE;
 extern const TokenType RBRACE;
+
 
 // Keywords
 extern const TokenType FUNCTION;

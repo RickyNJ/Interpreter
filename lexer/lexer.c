@@ -50,12 +50,12 @@ char* sliceInput(const char* input, int start, int end) {
 
     int length = end - start;
     char* res = malloc((length + 1) * sizeof(char));
-
     if (res == NULL) {
         return NULL;
     }
 
-    // TODO return slice of input
+    strncpy(res, input+start, length);
+    res[length] = '\0';
 
     return res;
 }
