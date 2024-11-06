@@ -2,6 +2,9 @@
 #ifndef  TOKEN_H
 #define TOKEN_H
 
+// define keyword hashtable size
+#include <stdio.h>
+#define TABLE_SIZE 32
 
 // Define TokeType as a const char* to represent token types
 typedef const char* TokenType;
@@ -37,6 +40,11 @@ extern const TokenType RBRACE;
 // Keywords
 extern const TokenType FUNCTION;
 extern const TokenType LET;
+extern const TokenType TRUE;
+extern const TokenType FALSE;
+extern const TokenType IF;
+extern const TokenType ELSE;
+extern const TokenType RETURN;
 
 typedef struct {
     char* Ident;
@@ -45,15 +53,18 @@ typedef struct {
 
 typedef struct {
     KeywordsEntry* Entry;
-    int size;
-    int count;
+    size_t size;
 } Keywords;
 
 // Function prototypes
 // Initialize keyword hashtable 
-Keywords* keywordsInit(KeywordsEntry*); 
+Keywords* keywordsInit();
+
+KeywordsEntry* createItem(char* key, TokenType type);
+void insertKeyword(Keywords* kwds, KeywordsEntry* kwe);
+int hashFunction(char* key);
 
 // Look up a identifier in a hashtable
-TokenType LookupIdent(char* ident);
+TokenType LookupIdent(char* key);
 
 #endif // TOKEN_H
