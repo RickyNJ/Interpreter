@@ -25,7 +25,8 @@ int main() {
             printf("Test failed at token %d: expected Type=%s, Literal=%s but got Type=%s, Literal=%s\n", i, want[i].Type, want[i].Literal, t->Type, t->Literal);
             break;
         } else {
-            printf("Token %d passed: Type=%s, Literal=%s\n", i, t->Type, t->Literal);
+            printf("Token %d passed: Type: %s, Literal: %s\n", i, t->Type, t->Literal);
+            printf("Wanted type: %s, literal: %s\n\n", want[i].Type, want[i].Literal);
         }
     }
 

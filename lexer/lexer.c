@@ -17,19 +17,27 @@ Lexer* New(const char* input) {
 
 Token* newToken(TokenType tokenType, char* ch) {
     Token* t = (Token*)malloc(sizeof(Token));
+    char* literal = (char*)malloc(strlen(ch)+1);
+    if (literal != NULL) {
+        strcpy(literal, ch);
+    }
+    
     t->Type = tokenType;
-    t->Literal = ch;
+    t->Literal = literal;
 
     return t;
 }
 
 void readchar(Lexer* l) {
     int inputlength = strlen(l->input);
+
     if (l->readPosition >= inputlength) {
-        l->ch = 0;
+        l->ch = '\0';
     } else {
         l->ch = l->input[l->readPosition];
     }
+
+    printf("read char: %c\n", l->ch);
 
     l->position = l->readPosition;
     l->readPosition++;
@@ -47,6 +55,7 @@ char* sliceInput(const char* input, int start, int end) {
         return NULL;
     }
 
+    // TODO return slice of input
 
     return res;
 }
@@ -63,6 +72,7 @@ char* readIdentifier(Lexer *l) {
     return sliceInput(l->input, position, l->position);
 }
 
+
 int isLetter(char ch) {
     return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
 }
@@ -70,6 +80,7 @@ int isLetter(char ch) {
 
 Token* NextToken(Lexer* l) {
     Token* t;
+
     switch (l->ch) {
         case '=':
             t = newToken(ASSIGN, &l->ch);
@@ -99,12 +110,16 @@ Token* NextToken(Lexer* l) {
             t = newToken(END_OF_FILE, &l->ch);
             break;
         default:
+            printf("this got triggered \n");
             if (isLetter(l->ch)){
                 t->Literal = readIdentifier(l);
+            } else {
+                t = newToken(ILLEGAL, &l->ch);
             }
-            t = newToken(ILLEGAL, &l->ch);
+
             break;
     }
+
     readchar(l);
     return t;
 }
