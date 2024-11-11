@@ -40,6 +40,8 @@ void readchar(Lexer* l) {
     printf("read char: %c\n", l->ch);
 
     l->position = l->readPosition;
+
+
     l->readPosition++;
 }
 

@@ -46,7 +46,9 @@ void insertKeyword(Keywords* kwds, KeywordsEntry* kwe) {
     int index = hashFunction(kwe->Ident);
     printf("%d\n", index);
 
-    while (kwds->Entry[index].Type)
+    while (kwds->Entry[index].Type) {
+
+    };
 }
 
 Keywords* keywordsInit() {
